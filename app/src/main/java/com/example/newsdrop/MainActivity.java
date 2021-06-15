@@ -34,27 +34,28 @@ public class MainActivity extends FragmentActivity {
         @NonNull
         @Override
         public Fragment getItem(int position) {
+            Fragment fragment=null;
             switch (position){
                 case 0:
-
+                    fragment=new TopHeadlinesFragment();
                 case 1:
-
+                    fragment=new BusinessFragment();
                 case 2:
-
+                    fragment=new EntertainmentFragment();
                 case 3:
-
+                    fragment=new GeneralFragment();
                 case 4:
-
+                    fragment=new HealthFragment();
                 case 5:
-
+                    fragment=new ScienceFragment();
                 case 6:
-
+                    fragment=new SportsFragment();
                 case 7:
-
+                    fragment=new TechnologyFragment();
                 case 8:
-
+                    fragment=new SearchFragment();
                 default:
-                    return null;
+                    return fragment;
             }
 
         }

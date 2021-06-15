@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SearchFragment"></activity>
+        <activity android:name=".TechnologyFragment" />
+        <activity android:name=".SportsFragment" />
+        <activity android:name=".ScienceFragment" />
+        <activity android:name=".HealthFragment" />
+        <activity android:name=".GeneralFragment" />
+        <activity android:name=".EntertainmentFragment" />
+        <activity android:name=".BusinessFragment" />
+        <activity android:name=".TopHeadlinesFragment" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
