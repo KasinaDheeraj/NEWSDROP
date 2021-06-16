@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">NEWSDROP</string>
+    <string-array name="Fragments">
+        <item>TopStories</item>
+        <item>Entertainment</item>
+        <item>Health</item>
+        <item>Sports</item>
+        <item>Technology</item>
+        <item>Business</item>
+        <item>General</item>
+        <item>Science</item>
+        <item>Search</item>
+    </string-array>
 </resources>

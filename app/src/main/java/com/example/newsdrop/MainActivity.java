@@ -9,87 +9,78 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.res.Resources;
 import android.os.Bundle;
 
-public class MainActivity extends FragmentActivity {
-    ViewPager viewPager=null;
+import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    ViewPager viewPager=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewPager=(ViewPager) findViewById(R.id.viewP);
+
+        viewPager=(ViewPager) findViewById(R.id.viewpager);
+        Resources r=getResources();
+        String[] titles=r.getStringArray(R.array.Fragments);
         FragmentManager fm=getSupportFragmentManager();
-        viewPager.setAdapter(new MyAdapter(fm,9));
+        setupViewPager(viewPager,titles);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
-    public static class MyAdapter extends FragmentPagerAdapter {
-        int count=0;
-        public MyAdapter(@NonNull FragmentManager fm,int count) {
-            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-            this.count=count;
-        }
+    private void setupViewPager(ViewPager viewPager,String[] titles) {
+        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(),titles);
 
+        adapter.addFragment(new TopHeadlinesFragment(),titles[0]);
+        adapter.addFragment(new EntertainmentFragment(), titles[1]);
+        adapter.addFragment(new HealthFragment(),titles[2]);
+        adapter.addFragment(new SportsFragment(), titles[3]);
+        adapter.addFragment(new TechnologyFragment(), titles[4]);
+        adapter.addFragment(new BusinessFragment(), titles[5]);
+        adapter.addFragment(new GeneralFragment(), titles[6]);
+        adapter.addFragment(new ScienceFragment(), titles[7]);
+        adapter.addFragment(new SearchFragment(), titles[8]);
+
+        viewPager.setAdapter(adapter);
+    }
+
+    public static class MyAdapter extends FragmentPagerAdapter {
+        String[] titles;
+        private final List<Fragment> FragmentList = new ArrayList<>();
+        public MyAdapter(@NonNull FragmentManager fm,String[] titles) {
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            this.titles=titles;
+            ;
+        }
+        private void addFragment(Fragment fragment,String Title){
+            FragmentList.add(fragment);
+
+        }
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment=null;
-            switch (position){
-                case 0:
-                    fragment=new TopHeadlinesFragment();
-                case 1:
-                    fragment=new BusinessFragment();
-                case 2:
-                    fragment=new EntertainmentFragment();
-                case 3:
-                    fragment=new GeneralFragment();
-                case 4:
-                    fragment=new HealthFragment();
-                case 5:
-                    fragment=new ScienceFragment();
-                case 6:
-                    fragment=new SportsFragment();
-                case 7:
-                    fragment=new TechnologyFragment();
-                case 8:
-                    fragment=new SearchFragment();
-                default:
-                    return fragment;
-            }
-
+            return FragmentList.get(position);
         }
 
         @Override
         public int getCount() {
-            return count;
+            return titles.length;
         }
 
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position){
-                case 0:
-
-                case 1:
-
-                case 2:
-
-                case 3:
-
-                case 4:
-
-                case 5:
-
-                case 6:
-
-                case 7:
-
-                case 8:
-
-                default:
-                    return super.getPageTitle(position);
+            return titles[position];
         }
     }
-    }
 }
+
