@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
     private static final String BASE_URL="https://newsapi.org/";
-    public static final String API_KEY="";
+    public static final String API_KEY="820db29518754234aad1b93357b6c2bf";
 
     public static NEWSAPI getClient(){
         Retrofit retrofit=new Retrofit.Builder()

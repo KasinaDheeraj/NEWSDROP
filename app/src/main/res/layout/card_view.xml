@@ -9,17 +9,16 @@
     android:layout_marginRight="11dp"
     android:layout_marginBottom="7dp"
     android:layout_marginTop="7dp"
-    card_view:cardCornerRadius="10dp"
-
-    >
+    card_view:cardCornerRadius="12dp"
+    android:elevation="4dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="@dimen/cardview_default_elevation">
+        android:padding="5dp">
         <ImageView
             android:id="@+id/cv_image"
             android:layout_width="match_parent"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             android:layout_height="200dp" />
         <FrameLayout
             android:layout_width="wrap_content"
@@ -36,7 +35,7 @@
                 android:layout_height="18dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                android:src="@mipmap/ic_cal"/>
+                android:src="@drawable/calendar"/>
             <TextView
                 android:id="@+id/cv_date"
                 android:layout_width="wrap_content"
@@ -54,13 +53,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/cv_image"
             android:scrollbars="none"
-            android:maxLines="2" />
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:minLines="1"/>
         <TextView
             android:id="@+id/cv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:maxLines="5"
+            android:minLines="2"
             android:layout_below="@+id/cv_title"/>
         <TextView
             android:id="@+id/source"

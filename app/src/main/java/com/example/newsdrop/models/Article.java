@@ -3,7 +3,7 @@ package com.example.newsdrop.models;
 import java.util.List;
 
 public class Article {
-    private List<Source> sources;
+    private Source source;
     private String author;
     private String title;
     private String description;
@@ -12,8 +12,8 @@ public class Article {
     private String publishedAt;
     private String content;
 
-    public List<Source> getSource() {
-        return sources;
+    public Source getSource() {
+        return source;
     }
 
     public String getAuthor() {
