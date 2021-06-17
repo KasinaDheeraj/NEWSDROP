@@ -32,43 +32,36 @@ import static com.example.newsdrop.api.APIClient.getClient;
 
 public class TopHeadlinesFragment extends Fragment {
     List<Article> articleList=new ArrayList<Article>();
-
-
+    RVAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         Call<News> call=APIClient.getClient().getHeadLines("in",APIClient.API_KEY);
         call.enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
                 if(!response.isSuccessful()){
-                    Log.e("onNotSuccessful!!!",response.code()+"");
+                    if(response.code()==429){
+                        Toast.makeText(inflater.getContext(),"Retry after sometime!",Toast.LENGTH_SHORT).show();
+                    }else{Toast.makeText(inflater.getContext(),response.code()+"",Toast.LENGTH_SHORT).show();}
+
                     return;
-                    //Toast.makeText(inflater.getContext(),response.code()+"",Toast.LENGTH_SHORT).show();
                 }
                 News news = (News) response.body();
                 articleList= news.getArticles();
-
-
-
-                //Toast.makeText(inflater.getContext(),"Success!!!",Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onFailure(Call<News> call, Throwable t) {
-                Log.e("onFailure",t.getMessage());
-                //Toast.makeText(inflater.getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(inflater.getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
-        RVAdapter adapter = new RVAdapter(articleList,articleList.size());
         RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_top_headlines_fragment,container,false);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new RVAdapter(articleList,articleList.size());
         rv.setAdapter(adapter);
-
         return rv;
     }
+
 
 }

@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -21,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ViewPager viewPager=null;
+    public static ViewPager viewPager=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
         Resources r=getResources();
         String[] titles=r.getStringArray(R.array.Fragments);
         FragmentManager fm=getSupportFragmentManager();
-        setupViewPager(viewPager,titles);
+        setupViewPager(fm,viewPager,titles);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
     }
-    private void setupViewPager(ViewPager viewPager,String[] titles) {
-        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(),titles);
+    private void setupViewPager(FragmentManager fm,ViewPager viewPager,String[] titles) {
+        MyAdapter adapter = new MyAdapter(fm,titles);
 
         adapter.addFragment(new TopHeadlinesFragment(),titles[0]);
         adapter.addFragment(new EntertainmentFragment(), titles[1]);
@@ -51,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new SearchFragment(), titles[8]);
 
         viewPager.setAdapter(adapter);
+
     }
 
     public static class MyAdapter extends FragmentPagerAdapter {
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         }
         private void addFragment(Fragment fragment,String Title){
             FragmentList.add(fragment);
-
         }
         @NonNull
         @Override

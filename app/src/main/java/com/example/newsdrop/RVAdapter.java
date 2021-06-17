@@ -1,6 +1,9 @@
 package com.example.newsdrop;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +21,7 @@ import java.util.List;
 class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     List<Article> articleList;
     int count=0;
+    Context context;
 
     ArrayList<String> titleList=new ArrayList<>();
     ArrayList<String> descriptionList=new ArrayList<>();
@@ -41,7 +45,8 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CardView cv=(CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view,parent,false);
+        context=parent.getContext();
+        CardView cv=(CardView) LayoutInflater.from(context).inflate(R.layout.card_view,parent,false);
         return new ViewHolder(cv);
     }
 
@@ -68,6 +73,15 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         TextView source=cv.findViewById(R.id.source);
         source.setText(sourceList.get(position));
 
+        cv.setOnClickListener(new ViewGroup.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,WebActivity.class);
+                intent.putExtra(WebActivity.URL,urlList.get(position));
+                context.startActivity(intent);
+            }
+        });
 
 
     }

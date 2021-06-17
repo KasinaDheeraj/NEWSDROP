@@ -36,7 +36,10 @@ public class ScienceFragment extends Fragment {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(inflater.getContext(),response.code()+"",Toast.LENGTH_SHORT).show();
+                    if(response.code()==429){
+                        Toast.makeText(inflater.getContext(),"Retry after sometime!",Toast.LENGTH_SHORT).show();
+                    }else{Toast.makeText(inflater.getContext(),response.code()+"",Toast.LENGTH_SHORT).show();}
+
                     return;
                 }
                 News news = (News) response.body();
