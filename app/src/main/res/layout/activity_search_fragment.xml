@@ -22,21 +22,9 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:singleLine="true"
             android:hint="Search..." />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/search_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search Results for"
-        android:textSize="20dp"
-        android:layout_below="@+id/ll"
-        android:visibility="gone"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_below="@id/search_result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </RelativeLayout>
