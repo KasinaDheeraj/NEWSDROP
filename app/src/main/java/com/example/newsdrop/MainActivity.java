@@ -10,8 +10,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -19,7 +22,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public static ViewPager viewPager=null;
+    public static ViewPager viewPager;
+    TabLayout tabLayout;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.searchOption){
+            tabLayout.getTabAt(8).select();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         String[] titles=r.getStringArray(R.array.Fragments);
         FragmentManager fm=getSupportFragmentManager();
         setupViewPager(fm,viewPager,titles);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
     }

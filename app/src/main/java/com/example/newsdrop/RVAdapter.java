@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.newsdrop.models.Article;
+import com.example.newsdrop.utils.DateFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +70,9 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         TextView desc=cv.findViewById(R.id.cv_description);
         desc.setText(descriptionList.get(position));
         TextView date=cv.findViewById(R.id.cv_date);
-        date.setText(dateList.get(position));
+        date.setText(DateFormatter.getDate(dateList.get(position)));
         TextView source=cv.findViewById(R.id.source);
-        source.setText(sourceList.get(position));
+        source.setText("Source: "+sourceList.get(position));
 
         cv.setOnClickListener(new ViewGroup.OnClickListener(){
 
