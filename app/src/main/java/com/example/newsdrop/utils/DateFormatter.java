@@ -16,6 +16,7 @@ public class DateFormatter {
 
         try {
             Date date=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(stringDate);
+
             newDate=sdf.format(date);
             time=new SimpleDateFormat(timePattern).format(date);
         } catch (ParseException e) {
