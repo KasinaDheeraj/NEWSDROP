@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "220624631393",
+    "project_id": "newsdrop-fe775",
+    "storage_bucket": "newsdrop-fe775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220624631393:android:b4de1b4f7a8629b34bdc20",
+        "android_client_info": {
+          "package_name": "com.example.newsdrop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220624631393-dh89amfd68m11d72lapn9q8ccqd7e8ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkkZ8NUGMQ_FqVUL3L9ZZCczwwhUgNGs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220624631393-dh89amfd68m11d72lapn9q8ccqd7e8ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
