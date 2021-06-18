@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.searchOption){
             tabLayout.getTabAt(8).select();
+        }else if(item.getItemId()==R.id.Logout){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this,AuthActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

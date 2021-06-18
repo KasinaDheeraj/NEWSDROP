@@ -31,6 +31,9 @@ public class HealthFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_health_fragment,container,false);
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         Call<News> call= APIClient.getClient().getCategorizedNews("in","health",APIClient.API_KEY);
         call.enqueue(new Callback<News>() {
             @Override
@@ -44,6 +47,8 @@ public class HealthFragment extends Fragment {
                 }
                 News news = (News) response.body();
                 articleList= news.getArticles();
+                RVAdapter adapter = new RVAdapter(articleList,articleList.size());
+                rv.setAdapter(adapter);
 
             }
 
@@ -54,10 +59,6 @@ public class HealthFragment extends Fragment {
             }
         });
 
-        RVAdapter adapter = new RVAdapter(articleList,articleList.size());
-        RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_health_fragment,container,false);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(adapter);
         return rv;
     }
 }

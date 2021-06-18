@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NEWSDROP</string>
+    <string name="app_name">News Drop</string>
     <string-array name="Fragments">
         <item>TopStories</item>
         <item>Entertainment</item>

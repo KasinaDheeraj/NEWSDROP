@@ -36,6 +36,9 @@ public class TopHeadlinesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_top_headlines_fragment,container,false);
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         Call<News> call=APIClient.getClient().getHeadLines("in",APIClient.API_KEY);
         call.enqueue(new Callback<News>() {
             @Override
@@ -49,6 +52,8 @@ public class TopHeadlinesFragment extends Fragment {
                 }
                 News news = (News) response.body();
                 articleList= news.getArticles();
+                adapter = new RVAdapter(articleList,articleList.size());
+                rv.setAdapter(adapter);
             }
 
             @Override
@@ -56,10 +61,8 @@ public class TopHeadlinesFragment extends Fragment {
                 Toast.makeText(inflater.getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-        RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_top_headlines_fragment,container,false);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new RVAdapter(articleList,articleList.size());
-        rv.setAdapter(adapter);
+
+
         return rv;
     }
 

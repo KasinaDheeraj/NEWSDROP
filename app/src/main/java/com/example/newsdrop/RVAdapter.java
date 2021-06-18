@@ -34,6 +34,7 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     public RVAdapter(List<Article> aList,int count){
         articleList=aList;
         this.count=count;
+        setupLists(articleList);
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardview;
@@ -55,7 +56,6 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CardView cv =holder.cardview;
 
-        setupLists(articleList);
 
         ImageView img=cv.findViewById(R.id.cv_image);
         if(ImageurlList.get(position)!=null){
@@ -70,9 +70,10 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         TextView desc=cv.findViewById(R.id.cv_description);
         desc.setText(descriptionList.get(position));
         TextView date=cv.findViewById(R.id.cv_date);
-        date.setText(DateFormatter.getDate(dateList.get(position)));
+        DateFormatter df=new DateFormatter();
+        date.setText(df.getDate(dateList.get(position)));
         TextView source=cv.findViewById(R.id.source);
-        source.setText("Source: "+sourceList.get(position));
+        source.setText("Source: "+sourceList.get(position)+"   "+df.time);
 
         cv.setOnClickListener(new ViewGroup.OnClickListener(){
 
@@ -95,6 +96,7 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
             sourceList.add((articleList.get(i).getSource()).getName());
             ImageurlList.add((articleList.get(i).getUrlToImage()));
             urlList.add(articleList.get(i).getUrl());
+            notifyDataSetChanged();
 
         }
     }

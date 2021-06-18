@@ -31,6 +31,9 @@ public class ScienceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_science_fragment,container,false);
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         Call<News> call= APIClient.getClient().getCategorizedNews("in","science",APIClient.API_KEY);
         call.enqueue(new Callback<News>() {
             @Override
@@ -44,6 +47,8 @@ public class ScienceFragment extends Fragment {
                 }
                 News news = (News) response.body();
                 articleList= news.getArticles();
+                RVAdapter adapter = new RVAdapter(articleList,articleList.size());
+                rv.setAdapter(adapter);
             }
 
             @Override
@@ -51,11 +56,6 @@ public class ScienceFragment extends Fragment {
                Toast.makeText(inflater.getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
-        RVAdapter adapter = new RVAdapter(articleList,articleList.size());
-        RecyclerView rv= (RecyclerView) inflater.inflate(R.layout.activity_science_fragment,container,false);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(adapter);
         return rv;
     }
 }
