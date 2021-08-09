@@ -23,10 +23,13 @@
 - Fragments
 - ViewPager plus TabLayout
 - Retrofit
-- Intent
 - REST API(NEWS API)
 - JSON Parsing
 - Glide
 - CardView
 - RecyclerView
+- News Categories: TopStories, Entertainment, Health, Sports, Technology, Business, Science, General
 ### **Screenshots**
+<img src="https://user-images.githubusercontent.com/58620100/128714220-6c0b393e-294d-4a04-8ef0-833e6c802208.jpg" height="550" /><img src="https://user-images.githubusercontent.com/58620100/128715433-51477f2d-7312-4dc4-a0ea-4e668189dacf.jpg" height="550" /><img src="https://user-images.githubusercontent.com/58620100/128715842-3d1a55b1-a626-461a-b09b-cba1b4612cfb.png" height="550" /><img src="https://user-images.githubusercontent.com/58620100/128716098-5f311e4c-789d-4414-833c-7e8bdd14223e.jpg" height="550" />
+
+
